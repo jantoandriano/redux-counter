@@ -1,26 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React,{PureComponent} from 'react';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Counter from './components/Counter';
+import reducers from './reducers';
+
+const styles = {
+  fontFamily: 'sans-serif',
+  textAlign: 'center',
+};
+
+class App extends PureComponent {
+  render() {
+    return (
+      <Provider store={createStore(reducers)}>
+        <div style={styles}>
+          <h2>REACT REDUX {'\u2728'}</h2>
+          <div>
+            <Counter />
+          </div>
+        </div>
+      </Provider>
+    );
+  }
 }
 
-export default App;
+export default App
+
